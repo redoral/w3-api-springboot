@@ -95,14 +95,15 @@ public class Monster {
         this.loot = loot;
     }
 
+    // Overrides toString() method to print out a JSON formatted object
     @Override
     public String toString() {
         return "Monster{" +
                 "id=" + id +
                 ", img='" + img + '\'' +
                 ", name='" + name + '\'' +
-                ", type=" + type +
-                ", susceptibility=" + susceptibility +
+                ", type=" + type + '\'' +
+                ", susceptibility='" + susceptibility + '\'' +
                 ", loot='" + loot + '\'' +
                 '}';
     }
