@@ -8,13 +8,13 @@ public class Monster {
     // Sequence
     @Id
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "monster_sequence",
+            sequenceName = "monster_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "monster_sequence"
     )
 
     // Variables
