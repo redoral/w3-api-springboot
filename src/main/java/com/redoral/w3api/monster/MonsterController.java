@@ -1,9 +1,8 @@
 package com.redoral.w3api.monster;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -20,4 +19,17 @@ public class MonsterController {
     public List<Monster> getMonsters(){
         return monsterService.getMonsters();
     }
+
+    @PostMapping
+    public void createMonster (@RequestBody Monster monster){ monsterService.createMonster(monster); }
+
+    @DeleteMapping(path = "{monsterId}")
+    public void deleteMonster(@PathVariable("monsterId") Long monsterId){ monsterService.deleteMonster(monsterId); }
+
+    @PutMapping(path = "{monsterId}")
+    public void updateMonster(@PathVariable("monsterId") Long monsterId,
+                              @RequestBody Monster monster){
+        monsterService.updateMonster(monsterId, monster);
+    }
+
 }
