@@ -21,6 +21,11 @@ public class MonsterService {
         return monsterRepository.findAll();
     }
 
+    // Gets monsters by type
+    public List<Monster> getMonstersByType(String type){
+        return monsterRepository.findMonstersByType(type);
+    }
+
     // Creates a new monster
     public void createMonster(Monster monster){ monsterRepository.save(monster); }
 
