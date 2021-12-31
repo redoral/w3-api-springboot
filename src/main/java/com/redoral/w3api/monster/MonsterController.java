@@ -20,17 +20,20 @@ public class MonsterController {
         return monsterService.getMonsters();
     }
 
-    @GetMapping(path = "{monsterType}")
+    @GetMapping(path = "type/{monsterType}")
     public List<Monster> getMonstersByType(@PathVariable("monsterType") String type){ return monsterService.getMonstersByType(type);}
 
+    @GetMapping(path = "{monsterId}")
+    public Monster getMonsterById(@PathVariable("monsterId") Long monsterId) { return monsterService.getMonster(monsterId); }
+
     @PostMapping
-    public void createMonster(@RequestBody Monster monster){ monsterService.createMonster(monster); }
+    public Monster createMonster(@RequestBody Monster monster){ return monsterService.createMonster(monster); }
 
     @DeleteMapping(path = "{monsterId}")
-    public void deleteMonster(@PathVariable("monsterId") Long monsterId){ monsterService.deleteMonster(monsterId); }
+    public boolean deleteMonster(@PathVariable("monsterId") Long monsterId){ return monsterService.deleteMonster(monsterId); }
 
     @PutMapping(path = "{monsterId}")
-    public void updateMonster(@PathVariable("monsterId") Long monsterId,
-                              @RequestBody Monster monster){ monsterService.updateMonster(monsterId, monster); }
+    public Monster updateMonster(@PathVariable("monsterId") Long monsterId,
+                              @RequestBody Monster monster){ return monsterService.updateMonster(monsterId, monster); }
 
 }
