@@ -18,7 +18,6 @@ target/
 *.iws
 *.iml
 *.ipr
-*.properties
 
 ### NetBeans ###
 /nbproject/private/
@@ -34,5 +33,4 @@ build/
 .vscode/
 
 ### Springboot ###
-src/main/resources/application.properties
 /src/main/java/com/redoral/w3api/config/
