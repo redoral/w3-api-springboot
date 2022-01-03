@@ -35,4 +35,4 @@ build/
 
 ### Springboot ###
 src/main/resources/application.properties
-
+/src/main/java/com/redoral/w3api/config/
