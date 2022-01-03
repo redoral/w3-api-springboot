@@ -8,6 +8,12 @@ class W3apiApplicationTests {
 
 	@Test
 	void contextLoads() {
+
+	}
+
+	@Test
+	public void main() {
+		W3apiApplication.main(new String[] {});
 	}
 
 }
