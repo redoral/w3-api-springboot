@@ -1,5 +1,7 @@
 package com.redoral.w3api.monster;
 
+import com.redoral.w3api.exception.MonsterNotFoundException;
+import com.redoral.w3api.exception.TypeNotExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,20 +24,28 @@ public class MonsterService {
     }
 
     // Gets monsters by type
-    public List<Monster> getMonstersByType(String type){
-        return monsterRepository.findMonstersByType(type);
+    public List<Monster> getMonstersByType(String type) throws TypeNotExistsException{
+        List<Monster> result = monsterRepository.findMonstersByType(type);
+
+        if (result != null){
+            return result;
+        } else {
+            throw new TypeNotExistsException("Type of " + type + " does not exist.");
+        }
     }
 
     // Get a monster by id
-    public Monster getMonster(Long id){
-        return monsterRepository.getMonsterById(id);
+    public Monster getMonster(Long monsterId) throws MonsterNotFoundException {
+        return monsterRepository.findById(monsterId).orElseThrow(() -> new MonsterNotFoundException("Monster with ID: " + monsterId + " does not exist."));
     }
 
     // Creates a new monster
     public Monster createMonster(Monster monster){ return monsterRepository.save(monster); }
 
     // Deletes a monster
-    public boolean deleteMonster(Long monsterId){
+    public boolean deleteMonster(Long monsterId) throws MonsterNotFoundException{
+        monsterRepository.findById(monsterId).orElseThrow(() -> new MonsterNotFoundException("Monster with ID: " + monsterId + " does not exist."));
+
         try {
             monsterRepository.deleteById(monsterId);
         } catch (Exception e) {
@@ -49,11 +59,11 @@ public class MonsterService {
     // Updates a monster
     @Transactional
     public Monster updateMonster(Long monsterId,
-                              Monster monster){
+                              Monster monster) throws MonsterNotFoundException {
 
-        Monster guy = monsterRepository.findById(monsterId).orElseThrow(() -> new IllegalStateException("Monster with ID: " + monsterId + " does not exist."));
+        Monster guy = monsterRepository.findById(monsterId).orElseThrow(() -> new MonsterNotFoundException("Monster with ID: " + monsterId + " does not exist."));
 
-        if (monster.img != null && monster.name != null & monster.type != null & monster.loot!=null){
+        if (monster.img != null && monster.name != null & monster.type != null & monster.loot !=null){
             guy.setImg(monster.img);
             guy.setName(monster.name);
             guy.setSusceptibility(monster.susceptibility);

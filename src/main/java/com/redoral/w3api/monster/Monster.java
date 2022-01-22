@@ -16,8 +16,6 @@ public class Monster {
             strategy = GenerationType.SEQUENCE,
             generator = "monster_sequence"
     )
-
-    // Variables
     public Long id;
     public String img;
     public String name;

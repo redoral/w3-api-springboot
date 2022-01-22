@@ -4,7 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class MonsterConfig {
@@ -17,7 +17,7 @@ public class MonsterConfig {
             Monster bigBadWolf = new Monster(2L,"https://static.wikia.nocookie.net/witcher/images/d/db/Tw3_journal_bigbadwolf.png",
                     "Big Bad Wolf", "Beast", new String[]{"Devil's Puffball", "Quen"}, new String[]{"Magic dust", "Red mutagen", "Fake tooth", "Corkscrew", "Bottlecaps"});
 
-            monsterRepository.saveAll(Arrays.asList(bears, bigBadWolf));
+            monsterRepository.saveAll(List.of(bears, bigBadWolf));
         };
     }
 }

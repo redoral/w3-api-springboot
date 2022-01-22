@@ -9,7 +9,4 @@ import java.util.List;
 public interface MonsterRepository extends JpaRepository<Monster, Long>{
     @Query("SELECT s FROM Monster s WHERE s.type = ?1")
     List<Monster> findMonstersByType(String type);
-
-    @Query("SELECT s from Monster s WHERE s.id = ?1")
-    Monster getMonsterById(Long id);
 }
